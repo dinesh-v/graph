@@ -22,6 +22,18 @@ Depending on the size of the project, if it is small and simple enough the refer
 
 Describe and show how to run the tests with code examples.
 
+# __Example__ # : Graph in Adjacency list
+
+    A : [( B, 2 ), ( C, 12 ), ( D, 7 )]
+    B : [( A, 2 ), ( C, 1 ), ( L, 4 )]
+    R : [( Z, 5 )]
+    C : [( A, 12 ), ( B, 1 ), ( D, 1 )]
+    D : [( A, 7 ), ( C, 1 ), ( F, 1 )]
+    F : [( W, 4 ), ( Z, 4 ), ( D, 1 )]
+    W : [( F, 4 ), ( L, 1 )]
+    Z : [( F, 4 ), ( R, 5 )]
+    L : [( B, 4 ), ( W, 1 )]
+
 ## Contributors
 
 Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
