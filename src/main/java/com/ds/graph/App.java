@@ -1,10 +1,9 @@
 package com.ds.graph;
 
-
 import com.ds.graph.algorithm.Dijkstra;
 
 /**
- * Hello world!
+ * Graph data structure implementation in Java
  */
 public class App {
     public static void main(String[] args) {
