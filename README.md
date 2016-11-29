@@ -4,7 +4,23 @@ At the top of the file there should be a short introduction and/ or overview tha
 
 ## Code Example
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+Initialize an undirected graph and add edges.
+
+    Graph<String> graph = new Graph<String>(false);
+    graph.addEdge("A", "B", 2);
+    graph.addEdge("A", "C", 12);
+    graph.addEdge("A", "D", 7);
+    graph.addEdge("C", "B", 1);
+    graph.addEdge("B", "L", 4);
+
+Print the graph in adjacency list format.
+    
+    System.out.println(graph);
+    
+Find shortest path using Dijkstra's algorithm
+
+    Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
+    dijkstra.findShortestPath();
 
 ## Motivation
 
