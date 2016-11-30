@@ -8,19 +8,19 @@ public class Graph<V> {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
     private boolean isDirected = false;
-    private HashMap<V, ArrayList<Edge<V>>> adjacencyList;
+    private TreeMap<V, ArrayList<Edge<V>>> adjacencyList;
 
-    public HashMap<V, ArrayList<Edge<V>>> getAdjacencyList() {
+    Graph(boolean isDirected) {
+        this.isDirected = isDirected;
+        this.adjacencyList = new TreeMap<V, ArrayList<Edge<V>>>();
+    }
+
+    public TreeMap<V, ArrayList<Edge<V>>> getAdjacencyList() {
         return adjacencyList;
     }
 
     public ArrayList<Edge<V>> getAdjacentVertices(V vertex) {
         return adjacencyList.get(vertex);
-    }
-
-    Graph(boolean isDirected) {
-        this.isDirected = isDirected;
-        this.adjacencyList = new HashMap<V, ArrayList<Edge<V>>>();
     }
 
     boolean addEdge(V sourceVertex, V destinationVertex, int weight) {
@@ -89,7 +89,7 @@ public class Graph<V> {
      *
      * @param startingVertex Identity of a vertex from the traversal must start
      */
-    private void breadthFirstTraversal(V startingVertex) {
+    public void breadthFirstTraversal(V startingVertex) {
 
     }
 

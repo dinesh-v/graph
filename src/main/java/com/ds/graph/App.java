@@ -1,7 +1,5 @@
 package com.ds.graph;
 
-import com.ds.graph.algorithm.Dijkstra;
-
 /**
  * Graph data structure implementation in Java
  */
@@ -20,7 +18,8 @@ public class App {
         graph.addEdge("F", "D", 1);
         graph.addEdge("W", "L", 1);
         System.out.println(graph);
-        //graph.depthFirstTraversal(null);
+        /*graph.depthFirstTraversal(null);
+        graph.breadthFirstTraversal(null);*/
 
 
         /*Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
