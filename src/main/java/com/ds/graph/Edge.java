@@ -4,7 +4,7 @@ public class Edge<V> {
     private V vertex;
     private int weight;
 
-    Edge(V vertex, int weight) {
+    public Edge(V vertex, int weight) {
         this.vertex = vertex;
         this.weight = weight;
     }
