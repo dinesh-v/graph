@@ -37,9 +37,14 @@ Provide code examples and explanations of how to get the project.
 Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
 ## Tests
+Test cases cover the following
 
-Describe and show how to run the tests with code examples.
-
+ - [x] Depth First Traversal
+ - [ ] Breadth First Traversal
+ - [ ] Dijkstra's algorithm
+~~~
+    mvn test
+~~~
 # __Example__ # : Graph in Adjacency list
 
     A : [( B, 2 ), ( C, 12 ), ( D, 7 )]
