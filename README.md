@@ -1,6 +1,6 @@
 ## Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Graph implementation in Java 8 
 
 ## Code Example
 
@@ -22,9 +22,11 @@ Find shortest path using Dijkstra's algorithm
     Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
     dijkstra.findShortestPath();
 
-## Motivation
+## References
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+ - [x] [Depth First Traversal](https://www.youtube.com/watch?v=iaBEKo5sM7w)
+ - [ ] [Breadth First Traversal](#)
+ - [ ] [Dijkstra's algorithm](#)
 
 ## Installation
 
