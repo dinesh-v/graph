@@ -77,46 +77,43 @@ public class Graph<V> {
     List<V> depthFirstTraversal(V startingVertex) {
 
         class DFS {
-            List<V> visited = new LinkedList<>();
-            List<V> outputSequence = new LinkedList<>();
-            Stack<V> stack = new Stack<>();
-            V vertex;
+            private List<V> visited = new LinkedList<>();
+            private List<V> outputSequence = new LinkedList<>();
+            private Stack<V> stack = new Stack<>();
 
             private DFS(V vertex) {
                 stack.push(vertex);
                 outputSequence.add(vertex);
                 visited.add(vertex);
-                this.vertex = vertex;
             }
 
-            boolean visitedAdjacentNodes(Edge<V> e) {
-                return adjacencyList.get(e.getVertex()).stream().anyMatch(edge -> !outputSequence.contains(edge.getVertex()));
+            private boolean visitedAdjacentNodes(Edge<V> e) {
+                return adjacencyList.get(e.getVertex()).stream().anyMatch(edge -> outputSequence.contains(edge.getVertex()));
             }
 
-            void searchInDepthFirstOrder(V currentVertex) {
+            private void searchInDepthFirstOrder(V currentVertex) {
                 if (!visited.contains(currentVertex)) visited.add(currentVertex);
                 if (!stack.contains(currentVertex)) stack.add(currentVertex);
-                ArrayList<Edge<V>> allAdjacentNodes = adjacencyList.get(currentVertex);
-                ArrayList<Edge<V>> unVisitedAdjacentNodes = new ArrayList<>();
-                for (Edge<V> e : allAdjacentNodes) {
-                    if (!visited.contains(e.getVertex())) {
-                        unVisitedAdjacentNodes.add(e);
-                    }
-                }
+                if (!outputSequence.contains(currentVertex)) outputSequence.add(currentVertex);
+                List<Edge<V>> unVisitedAdjacentNodes = adjacencyList.get(currentVertex).stream()
+                        .filter(e -> !visited.contains(e.getVertex()))
+                        .collect(Collectors.toList());
                 for (Edge<V> e : unVisitedAdjacentNodes) {
-                    if (!visited.contains(e.getVertex())) {
-                        searchInDepthFirstOrder(e.getVertex());
-                        if (visitedAdjacentNodes(e)) {
-                            stack.pop();
-                            outputSequence.add(e.getVertex());
-                        }
+                    searchInDepthFirstOrder(e.getVertex());
+                    if (visitedAdjacentNodes(e)) {
+                        stack.pop();
                     }
                 }
-                System.out.println(outputSequence);
+            }
+
+            private List<V> getOutputSequence() {
+                return outputSequence;
             }
         }
-        new DFS(startingVertex).searchInDepthFirstOrder(startingVertex);
-        return null;
+
+        DFS dfs = new DFS(startingVertex);
+        dfs.searchInDepthFirstOrder(startingVertex);
+        return dfs.getOutputSequence();
     }
 
 

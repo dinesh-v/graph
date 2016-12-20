@@ -4,15 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GraphTest {
-    Graph<String> graph;
+    private Graph<String> graph;
 
     @Before
     public void setUp() throws Exception {
@@ -36,8 +34,14 @@ public class GraphTest {
 
     @Test
     public void depthFirstTraversal() throws Exception {
-        System.out.println(graph);
-        graph.depthFirstTraversal("A");
-    }
+        List<String> expectedDepthFirstOrder = Arrays.asList("A", "B", "S", "C", "D", "E", "H", "G", "F");
+        List<String> actualDepthFirstOrder = graph.depthFirstTraversal("A");
 
+        System.out.println("Graph Adjacency list:");
+        System.out.println(graph);
+        System.out.println("Depth First Traversal:");
+        System.out.println(actualDepthFirstOrder);
+
+        assertEquals(expectedDepthFirstOrder, actualDepthFirstOrder);
+    }
 }

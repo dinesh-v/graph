@@ -18,7 +18,8 @@ public class App {
         graph.addEdge("F", "D", 1);
         graph.addEdge("W", "L", 1);
         System.out.println(graph);
-        graph.depthFirstTraversal("A");
+        System.out.println(graph.depthFirstTraversal("A"));
+
         //graph.breadthFirstTraversal(null);
 
 
