@@ -22,7 +22,7 @@ Find shortest path using Dijkstra's algorithm
     Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
     dijkstra.findShortestPath();
 
-## References
+## Implementation
 
  - [x] [Depth First Traversal](https://www.youtube.com/watch?v=iaBEKo5sM7w)
  - [ ] [Breadth First Traversal](#)
