@@ -23,6 +23,14 @@ public class Graph<V> {
         return adjacencyList.get(vertex);
     }
 
+    boolean addEdge(V sourceVertex, V destinationVertex) {
+        persistVertex(sourceVertex, destinationVertex, 1);
+        if (!isDirected) {
+            persistVertex(destinationVertex, sourceVertex, 1);
+        }
+        return true;
+    }
+
     boolean addEdge(V sourceVertex, V destinationVertex, int weight) {
         persistVertex(sourceVertex, destinationVertex, weight);
         if (!isDirected) {
@@ -64,22 +72,32 @@ public class Graph<V> {
      *
      * @param startingVertex Identity of a vertex from the traversal must start
      */
-    void depthFirstTraversal(V startingVertex) {
+    List<V> depthFirstTraversal(V startingVertex) {
         List<V> visitedVertex = new LinkedList<V>();
         Stack<V> stack = new Stack<V>();
         if (adjacencyList.containsKey(startingVertex) && startingVertex != null) {
             stack.push(startingVertex);
             visitedVertex.add(startingVertex);
-            // Get adjacent vertices of startingVertex Ex: A
-            ArrayList<Edge<V>> adjacentVertices = adjacencyList.get(startingVertex);
-            // Visit adjacent vertices in alphabetical order. It would be better if adjacent vertices are stored in sorted order.
-            // TODO: Recode storing logic of adjacent vertices in addEdge() method.
 
+            ArrayList<Edge<V>> adjacentVertices = adjacencyList.get(startingVertex);
+
+            for (Edge<V> edge : adjacentVertices) {
+                if (!visitedVertex.contains(edge.getVertex())) { // If we haven't visited the vertex, then process
+                    if ((getAdjacentVertices(edge.getVertex()) == null)) { // If there are no adjacent vertices
+                        stack.push(edge.getVertex());
+                        visitedVertex.add(edge.getVertex());
+                    }
+                }
+            }
 
         } else {
-            // TODO: Throw custom exception
             logger.log(Level.SEVERE, "Starting vertex should be specified");
         }
+        System.out.println(visitedVertex.toString());
+        return visitedVertex;
+    }
+
+    void traverseByDepth() {
 
     }
 
