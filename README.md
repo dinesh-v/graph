@@ -25,7 +25,7 @@ Find shortest path using Dijkstra's algorithm
 ## Implementation
 
  - [x] [Depth First Traversal](https://www.youtube.com/watch?v=iaBEKo5sM7w)
- - [ ] [Breadth First Traversal](#)
+ - [ ] [Breadth First Traversal](https://www.youtube.com/watch?v=QRq6p9s8NVg)
  - [ ] [Dijkstra's algorithm](#)
 
 ## Installation
