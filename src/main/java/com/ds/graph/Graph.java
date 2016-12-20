@@ -1,8 +1,10 @@
 package com.ds.graph;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Graph<V> {
 
@@ -73,33 +75,50 @@ public class Graph<V> {
      * @param startingVertex Identity of a vertex from the traversal must start
      */
     List<V> depthFirstTraversal(V startingVertex) {
-        List<V> visitedVertex = new LinkedList<V>();
-        Stack<V> stack = new Stack<V>();
-        if (adjacencyList.containsKey(startingVertex) && startingVertex != null) {
-            stack.push(startingVertex);
-            visitedVertex.add(startingVertex);
 
-            ArrayList<Edge<V>> adjacentVertices = adjacencyList.get(startingVertex);
+        class DFS {
+            List<V> visited = new LinkedList<>();
+            List<V> outputSequence = new LinkedList<>();
+            Stack<V> stack = new Stack<>();
+            V vertex;
 
-            for (Edge<V> edge : adjacentVertices) {
-                if (!visitedVertex.contains(edge.getVertex())) { // If we haven't visited the vertex, then process
-                    if ((getAdjacentVertices(edge.getVertex()) == null)) { // If there are no adjacent vertices
-                        stack.push(edge.getVertex());
-                        visitedVertex.add(edge.getVertex());
-                    }
-                }
+            private DFS(V vertex) {
+                stack.push(vertex);
+                outputSequence.add(vertex);
+                visited.add(vertex);
+                this.vertex = vertex;
             }
 
-        } else {
-            logger.log(Level.SEVERE, "Starting vertex should be specified");
+            boolean visitedAdjacentNodes(Edge<V> e) {
+                return adjacencyList.get(e.getVertex()).stream().anyMatch(edge -> !outputSequence.contains(edge.getVertex()));
+            }
+
+            void searchInDepthFirstOrder(V currentVertex) {
+                if (!visited.contains(currentVertex)) visited.add(currentVertex);
+                if (!stack.contains(currentVertex)) stack.add(currentVertex);
+                ArrayList<Edge<V>> allAdjacentNodes = adjacencyList.get(currentVertex);
+                ArrayList<Edge<V>> unVisitedAdjacentNodes = new ArrayList<>();
+                for (Edge<V> e : allAdjacentNodes) {
+                    if (!visited.contains(e.getVertex())) {
+                        unVisitedAdjacentNodes.add(e);
+                    }
+                }
+                for (Edge<V> e : unVisitedAdjacentNodes) {
+                    if (!visited.contains(e.getVertex())) {
+                        searchInDepthFirstOrder(e.getVertex());
+                        if (visitedAdjacentNodes(e)) {
+                            stack.pop();
+                            outputSequence.add(e.getVertex());
+                        }
+                    }
+                }
+                System.out.println(outputSequence);
+            }
         }
-        System.out.println(visitedVertex.toString());
-        return visitedVertex;
+        new DFS(startingVertex).searchInDepthFirstOrder(startingVertex);
+        return null;
     }
 
-    void traverseByDepth() {
-
-    }
 
     /**
      * Breadth first traversal
