@@ -35,13 +35,18 @@ public class GraphTest {
     @Test
     public void depthFirstTraversal() throws Exception {
         List<String> expectedDepthFirstOrder = Arrays.asList("A", "B", "S", "C", "D", "E", "H", "G", "F");
+        List<String> expectedBreadthFirstOrder = Arrays.asList("A", "B", "S", "C", "G", "D", "E", "F", "H");
         List<String> actualDepthFirstOrder = graph.depthFirstTraversal("A");
+        List<String> actualBreadthFirstOrder = graph.breadthFirstTraversal("A");
 
-        System.out.println("Graph Adjacency list:");
+        System.out.println("Graph's Adjacency list:");
         System.out.println(graph);
         System.out.println("Depth First Traversal:");
         System.out.println(actualDepthFirstOrder);
+        System.out.println("Breadth First Traversal:");
+        System.out.println(actualBreadthFirstOrder);
 
         assertEquals(expectedDepthFirstOrder, actualDepthFirstOrder);
+        assertEquals(expectedBreadthFirstOrder, actualBreadthFirstOrder);
     }
 }

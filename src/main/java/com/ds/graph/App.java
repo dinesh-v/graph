@@ -19,9 +19,7 @@ public class App {
         graph.addEdge("W", "L", 1);
         System.out.println(graph);
         System.out.println(graph.depthFirstTraversal("A"));
-
-        //graph.breadthFirstTraversal(null);
-
+        System.out.println(graph.breadthFirstTraversal("A"));
 
         /*Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
         dijkstra.findShortestPath();*/

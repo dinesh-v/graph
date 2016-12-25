@@ -123,8 +123,49 @@ public class Graph<V> {
      *
      * @param startingVertex Identity of a vertex from the traversal must start
      */
-    public void breadthFirstTraversal(V startingVertex) {
+    List<V> breadthFirstTraversal(V startingVertex) {
+        class BFS {
+            private List<V> visited = new LinkedList<>();
+            private List<V> outputSequence = new LinkedList<>();
+            private Queue<V> queue = new LinkedList<>();
 
+            private BFS(V vertex) {
+                outputSequence.add(vertex);
+                visited.add(vertex);
+            }
+
+            private boolean visitedAdjacentNodes(V vertex) {
+                return adjacencyList.get(vertex).stream().anyMatch(edge -> outputSequence.contains(edge.getVertex()));
+            }
+
+            private void searchInBreadthFirstOrder(V currentVertex) {
+                List<Edge<V>> unVisitedAdjacentNodes = adjacencyList.get(currentVertex).stream()
+                        .filter(e -> !visited.contains(e.getVertex()))
+                        .collect(Collectors.toList());
+                if (unVisitedAdjacentNodes.size() != 0) {
+                    for (Edge<V> e : unVisitedAdjacentNodes) {
+                        queue.add(e.getVertex());
+                        outputSequence.add(e.getVertex());
+                        visited.add(e.getVertex());
+                    }
+                    if (visitedAdjacentNodes(currentVertex)) {
+                        searchInBreadthFirstOrder(queue.poll());
+                    }
+                } else {
+                    if (queue.size() > 0) {
+                        searchInBreadthFirstOrder(queue.poll());
+                    }
+                }
+
+            }
+
+            private List<V> getOutputSequence() {
+                return outputSequence;
+            }
+        }
+        BFS bfs = new BFS(startingVertex);
+        bfs.searchInBreadthFirstOrder(startingVertex);
+        return bfs.getOutputSequence();
     }
 
     @Override
