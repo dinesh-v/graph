@@ -1,20 +1,16 @@
 package com.ds.graph;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Graph<V> {
 
-    private Logger logger = Logger.getLogger(this.getClass().getName());
     private boolean isDirected = false;
     private TreeMap<V, ArrayList<Edge<V>>> adjacencyList;
 
-    Graph(boolean isDirected) {
+    public Graph(boolean isDirected) {
         this.isDirected = isDirected;
-        this.adjacencyList = new TreeMap<V, ArrayList<Edge<V>>>();
+        this.adjacencyList = new TreeMap<>();
     }
 
     public TreeMap<V, ArrayList<Edge<V>>> getAdjacencyList() {
@@ -44,23 +40,21 @@ public class Graph<V> {
     private void persistVertex(V sourceVertex, V destinationVertex, int weight) {
         ArrayList<Edge<V>> adjacentVertex;
         if (!doesVertexExist(sourceVertex)) {
-            adjacentVertex = new ArrayList<Edge<V>>();
-            adjacentVertex.add(new Edge<V>(destinationVertex, weight));
+            adjacentVertex = new ArrayList<>();
+            adjacentVertex.add(new Edge<>(destinationVertex, weight));
             adjacencyList.put(sourceVertex, adjacentVertex);
         } else {
             adjacentVertex = adjacencyList.get(sourceVertex);
-            adjacentVertex.add(new Edge<V>(destinationVertex, weight));
+            adjacentVertex.add(new Edge<>(destinationVertex, weight));
         }
 
-        Collections.sort(adjacencyList.get(sourceVertex), new Comparator<Edge<V>>() {
-            public int compare(Edge<V> edge1, Edge<V> edge2) {
-                if (edge1.getVertex() instanceof Integer) {
-                    return ((Integer) edge1.getVertex()) - ((Integer) edge2.getVertex());
-                } else if (edge1.getVertex() instanceof String) {
-                    return ((String) edge1.getVertex()).compareTo((String) edge2.getVertex());
-                }
-                return 0;
+        adjacencyList.get(sourceVertex).sort((edge1, edge2) -> {
+            if (edge1.getVertex() instanceof Integer) {
+                return ((Integer) edge1.getVertex()) - ((Integer) edge2.getVertex());
+            } else if (edge1.getVertex() instanceof String) {
+                return ((String) edge1.getVertex()).compareTo((String) edge2.getVertex());
             }
+            return 0;
         });
     }
 

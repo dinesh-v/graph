@@ -5,7 +5,7 @@ package com.ds.graph;
  */
 public class App {
     public static void main(String[] args) {
-        Graph<String> graph = new Graph<String>(false);
+        Graph<String> graph = new Graph<>(false);
         graph.addEdge("A", "B", 2);
         graph.addEdge("A", "C", 12);
         graph.addEdge("A", "D", 7);
@@ -20,8 +20,5 @@ public class App {
         System.out.println(graph);
         System.out.println(graph.depthFirstTraversal("A"));
         System.out.println(graph.breadthFirstTraversal("A"));
-
-        /*Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
-        dijkstra.findShortestPath();*/
     }
 }
