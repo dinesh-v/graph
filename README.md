@@ -25,8 +25,8 @@ Find shortest path using Dijkstra's algorithm
 ## Implementation
 
  - [x] [Depth First Traversal](https://www.youtube.com/watch?v=iaBEKo5sM7w)
- - [ ] [Breadth First Traversal](https://www.youtube.com/watch?v=QRq6p9s8NVg)
- - [ ] [Dijkstra's algorithm](#)
+ - [x] [Breadth First Traversal](https://www.youtube.com/watch?v=QRq6p9s8NVg)
+ - [x] [Dijkstra's algorithm](https://www.youtube.com/watch?v=pVfj6mxhdMw&t=46s)
 
 ## Installation
 
@@ -40,7 +40,7 @@ Depending on the size of the project, if it is small and simple enough the refer
 Test cases cover the following
 
  - [x] Depth First Traversal
- - [ ] Breadth First Traversal
+ - [x] Breadth First Traversal
  - [ ] Dijkstra's algorithm
 ~~~
     mvn test

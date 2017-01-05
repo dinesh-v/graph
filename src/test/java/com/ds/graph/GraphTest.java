@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -63,10 +65,18 @@ public class GraphTest {
         graph.addEdge("B", "E", 2);
         graph.addEdge("B", "C", 5);
         graph.addEdge("C", "E", 5);
-        /*List<String> expectedShortestPathOrder = Arrays.asList("A", "B", "S", "C", "G", "D", "E", "F", "H");
-        Dijkstra<String> dijkstra = new Dijkstra<>(graph);
-        List<String> actualBreadthFirstOrder = dijkstra.findShortestPath("A");
-        System.out.println("Dijkstra's shortest path:\n" + actualBreadthFirstOrder);*/
-        //assertEquals(expectedShortestPathOrder, actualBreadthFirstOrder);
+
+
+        Map<String, Edge<String>> actualShortestPath = graph.dijkstraShortestPath("A");
+
+        Map<String, Edge<String>> expectedShortestPath = new TreeMap<>();
+        expectedShortestPath.put("A", new Edge<>("A", 0));
+        expectedShortestPath.put("B", new Edge<>("D", 3));
+        expectedShortestPath.put("C", new Edge<>("E", 7));
+        expectedShortestPath.put("D", new Edge<>("A", 1));
+        expectedShortestPath.put("E", new Edge<>("D", 2));
+
+        assertEquals(expectedShortestPath, actualShortestPath);
+
     }
 }

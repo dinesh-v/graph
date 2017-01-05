@@ -162,6 +162,53 @@ public class Graph<V> {
         return bfs.getOutputSequence();
     }
 
+
+    Map<V, Edge<V>> dijkstraShortestPath(V startingVertex) {
+
+        class Dijkstra {
+            private List<V> visited = new LinkedList<>();
+            private Map<V, Edge<V>> shortestPathMap = new TreeMap<>();
+            private int shortestWeight = 0;
+            private V nextVertex = null;
+
+            public Dijkstra(V startingVertex) {
+                shortestPathMap.put(startingVertex, new Edge<>(startingVertex, 0));
+            }
+
+            private Map<V, Edge<V>> findShortestPath() {
+                findShortestPath(shortestPathMap.keySet().iterator().next());
+                return shortestPathMap;
+            }
+
+            private void findShortestPath(V currentVertex) {
+                List<Edge<V>> unVisitedAdjacentNodes = adjacencyList.get(currentVertex).stream()
+                        .filter(e -> !visited.contains(e.getVertex()))
+                        .collect(Collectors.toList());
+                if (unVisitedAdjacentNodes.size() != 0) { // Take a note of which vertex has smallest weight
+                    for (Edge<V> e : unVisitedAdjacentNodes) {
+                        int calculatedPathWeight = shortestPathMap.get(currentVertex).getWeight() + e.getWeight();
+                        if (calculatedPathWeight < shortestWeight || shortestWeight == 0) { // To find which vertex should the algorithm start calculating from
+                            nextVertex = e.getVertex();
+                            shortestWeight = calculatedPathWeight;
+                        }
+                        if (shortestPathMap.containsKey(e.getVertex()) && shortestPathMap.get(e.getVertex()).getWeight() > calculatedPathWeight) {
+                            shortestPathMap.get(e.getVertex()).setWeight(calculatedPathWeight);
+                            shortestPathMap.get(e.getVertex()).setVertex(currentVertex);
+                        }
+                        if (!shortestPathMap.containsKey(e.getVertex())) {
+                            shortestPathMap.put(e.getVertex(), new Edge<>(currentVertex, calculatedPathWeight));
+                        }
+                    }
+                    shortestWeight = 0;
+                    visited.add(currentVertex);
+                    findShortestPath(nextVertex);
+                }
+            }
+        }
+        Dijkstra dijkstra = new Dijkstra(startingVertex);
+        return dijkstra.findShortestPath();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
