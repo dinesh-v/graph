@@ -85,6 +85,11 @@ public class Graph<V> {
                 return adjacencyList.get(e.getVertex()).stream().anyMatch(edge -> outputSequence.contains(edge.getVertex()));
             }
 
+            private List<V> searchInDepthFirstOrder() {
+                searchInDepthFirstOrder(visited.get(0));
+                return outputSequence;
+            }
+
             private void searchInDepthFirstOrder(V currentVertex) {
                 if (!visited.contains(currentVertex)) visited.add(currentVertex);
                 if (!stack.contains(currentVertex)) stack.add(currentVertex);
@@ -106,8 +111,7 @@ public class Graph<V> {
         }
 
         DFS dfs = new DFS(startingVertex);
-        dfs.searchInDepthFirstOrder(startingVertex);
-        return dfs.getOutputSequence();
+        return dfs.searchInDepthFirstOrder();
     }
 
 
@@ -132,6 +136,11 @@ public class Graph<V> {
                 return adjacencyList.get(vertex).stream().anyMatch(edge -> outputSequence.contains(edge.getVertex()));
             }
 
+            private List<V> searchInBreadthFirstOrder() {
+                searchInBreadthFirstOrder(visited.get(0));
+                return outputSequence;
+            }
+
             private void searchInBreadthFirstOrder(V currentVertex) {
                 List<Edge<V>> unVisitedAdjacentNodes = adjacencyList.get(currentVertex).stream()
                         .filter(e -> !visited.contains(e.getVertex()))
@@ -152,14 +161,9 @@ public class Graph<V> {
                 }
 
             }
-
-            private List<V> getOutputSequence() {
-                return outputSequence;
-            }
         }
         BFS bfs = new BFS(startingVertex);
-        bfs.searchInBreadthFirstOrder(startingVertex);
-        return bfs.getOutputSequence();
+        return bfs.searchInBreadthFirstOrder();
     }
 
 

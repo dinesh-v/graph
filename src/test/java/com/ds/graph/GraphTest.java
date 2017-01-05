@@ -27,6 +27,7 @@ public class GraphTest {
         graph.addEdge("F", "G");
         graph.addEdge("S", "G");
         graph.addEdge("G", "H");
+        System.out.println("Graph's Adjacency list:\n" + graph);
     }
 
     @After
@@ -38,12 +39,7 @@ public class GraphTest {
     public void depthFirstTraversal() throws Exception {
         List<String> expectedDepthFirstOrder = Arrays.asList("A", "B", "S", "C", "D", "E", "H", "G", "F");
         List<String> actualDepthFirstOrder = graph.depthFirstTraversal("A");
-
-        System.out.println("Graph's Adjacency list:");
-        System.out.println(graph);
-        System.out.println("Depth First Traversal:");
-        System.out.println(actualDepthFirstOrder);
-
+        System.out.println("Depth First Traversal:\n" + actualDepthFirstOrder);
         assertEquals(expectedDepthFirstOrder, actualDepthFirstOrder);
     }
 
@@ -57,6 +53,7 @@ public class GraphTest {
 
     @Test
     public void dijkstraFindShortestPath() throws Exception {
+        //TODO: The below graph set 2 must be in setup method.
         Graph<String> graph = new Graph<>(false);
         graph.addEdge("A", "B", 6);
         graph.addEdge("A", "D", 1);
