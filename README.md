@@ -41,7 +41,7 @@ Test cases cover the following
 
  - [x] Depth First Traversal
  - [x] Breadth First Traversal
- - [ ] Dijkstra's algorithm
+ - [x] Dijkstra's algorithm
 ~~~
     mvn test
 ~~~

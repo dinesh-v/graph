@@ -73,7 +73,15 @@ public class GraphTest {
         expectedShortestPath.put("D", new Edge<>("A", 1));
         expectedShortestPath.put("E", new Edge<>("D", 2));
 
-        assertEquals(expectedShortestPath, actualShortestPath);
+        System.out.println("Expected : " + expectedShortestPath.keySet());
+        System.out.println("Actual : " + actualShortestPath.keySet());
+
+        assertEquals(expectedShortestPath.keySet(), actualShortestPath.keySet());
+
+        System.out.println("Expected : " + expectedShortestPath.values().toString());
+        System.out.println("Actual : " + actualShortestPath.values().toString());
+
+        assertEquals(expectedShortestPath.values().toString(), actualShortestPath.values().toString());
 
     }
 }
