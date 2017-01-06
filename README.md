@@ -17,10 +17,17 @@ Print the graph in adjacency list format.
     
     System.out.println(graph);
     
+Breadth First Traversal
+
+    graph.breadthFirstTraversal("A")
+
+Depth First Traversal
+
+    graph.depthFirstTraversal("A")
+
 Find shortest path using Dijkstra's algorithm
 
-    Dijkstra<String> dijkstra = new Dijkstra<String>(graph, "A");
-    dijkstra.findShortestPath();
+    graph.findShortestPath();
 
 ## Implementation
 
@@ -59,7 +66,14 @@ Test cases cover the following
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+Anyone can contribute to this project.
+
+## TODO
+
+- [ ] What if BFS/DFS start from middle?
+- [ ] Optimize Dijkstra's algorithm to show intermediate path result
+- [ ] Load test
+- [ ] Get graph path from a text file or CSV file
 
 ## License
 
