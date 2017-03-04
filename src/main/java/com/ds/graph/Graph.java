@@ -123,11 +123,14 @@ public class Graph<V> {
      */
     List<V> breadthFirstTraversal(V startingVertex) {
         class BFS {
-            private List<V> visited = new LinkedList<>();
-            private List<V> outputSequence = new LinkedList<>();
-            private Queue<V> queue = new LinkedList<>();
+            private List<V> visited;
+            private List<V> outputSequence;
+            private Queue<V> queue;
 
             private BFS(V vertex) {
+                visited = new LinkedList<>();
+                outputSequence = new LinkedList<>();
+                queue = new LinkedList<>();
                 outputSequence.add(vertex);
                 visited.add(vertex);
             }
@@ -170,12 +173,14 @@ public class Graph<V> {
     Map<V, Edge<V>> dijkstraShortestPath(V startingVertex) {
 
         class Dijkstra {
-            private List<V> visited = new LinkedList<>();
-            private Map<V, Edge<V>> shortestPathMap = new TreeMap<>();
+            private List<V> visited;
+            private Map<V, Edge<V>> shortestPathMap;
             private int shortestWeight = 0;
             private V nextVertex = null;
 
             public Dijkstra(V startingVertex) {
+                visited = new LinkedList<>();
+                shortestPathMap = new TreeMap<>();
                 shortestPathMap.put(startingVertex, new Edge<>(startingVertex, 0));
             }
 
