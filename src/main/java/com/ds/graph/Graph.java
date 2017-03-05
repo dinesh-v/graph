@@ -71,14 +71,15 @@ public class Graph<V> {
     List<V> depthFirstTraversal(V startingVertex) {
 
         class DFS {
-            private List<V> visited = new LinkedList<>();
-            private List<V> outputSequence = new LinkedList<>();
+            private List<V> visited;
+            private List<V> outputSequence;
             private Stack<V> stack = new Stack<>();
 
             private DFS(V vertex) {
+                stack = new Stack<>();
                 stack.push(vertex);
-                outputSequence.add(vertex);
-                visited.add(vertex);
+                outputSequence = new LinkedList<>(Collections.singletonList(vertex));
+                visited = new LinkedList<>(Collections.singletonList(vertex));
             }
 
             private boolean visitedAdjacentNodes(Edge<V> e) {
@@ -128,11 +129,9 @@ public class Graph<V> {
             private Queue<V> queue;
 
             private BFS(V vertex) {
-                visited = new LinkedList<>();
-                outputSequence = new LinkedList<>();
+                visited = new LinkedList<>(Collections.singletonList(vertex));
+                outputSequence = new LinkedList<>(Collections.singletonList(vertex));
                 queue = new LinkedList<>();
-                outputSequence.add(vertex);
-                visited.add(vertex);
             }
 
             private boolean visitedAdjacentNodes(V vertex) {
@@ -227,4 +226,3 @@ public class Graph<V> {
         return stringBuilder.toString();
     }
 }
-
